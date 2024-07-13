@@ -1,0 +1,27 @@
+<%- include('partials/header.ejs') %>
+<div class="backdrop_img">
+    <img src="https://image.tmdb.org/t/p/w500<%= view_data.backdrop_path %>" alt="Backdrop poster">
+</div>
+<div class="poster-image">
+    <img src="https://image.tmdb.org/t/p/w500<%= view_data.poster_path %>" alt="Movie poster">
+</div>
+<div class="movie-details">
+    <h1 class="title"><%= title %>(<%= release_date %>)</h1>
+    <h2 class="release-date"><%= release %></h2>
+    <div class="details">
+        <h3 class="rating">Rating: ⭐ <%= view_data.vote_average %></h3>
+        <h3 class="genres">
+            Genres:
+            <% view_data.genres.forEach(data =>{ %>
+                <%= data.name %> ,
+        <% }); %>
+        </h3>
+        <h3 class="tagline">
+            Tagline: <%= tagline %> 
+        </h3>
+    </div>
+    <h2 class="overview-heading">Overview</h2>
+    <p class="overview"><%= view_data.overview %></p>
+    
+</div>
+<%- include('partials/footer.ejs') %>
