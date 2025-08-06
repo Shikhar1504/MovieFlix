@@ -17,7 +17,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const apiKey="&api_key=b052783e713ee34ff49f75d1c7ca9714";
+import dotenv from 'dotenv';
+dotenv.config();
+
+const apiKey=`&api_key=${process.env.TMDB_API_KEY}`;
+
 const baseUrl="https://api.themoviedb.org/3"
 const imgUrl= "https://image.tmdb.org/t/p/w500"
 
@@ -44,7 +48,12 @@ app.get("/",async(req,res)=>{
     catch (error){
         console.error("Failed to make request:", error.message);
         res.render("index.ejs", {
-          error: error.message,
+            tr: [],
+            pmovie: [],
+            tmovie: [],
+            ptv: [],
+            ttv: [],
+            error: error.message,
         });
     }
 });
@@ -66,7 +75,14 @@ app.post("/search",async(req,res)=>{
     }catch (error) {
         console.error("Failed to make request:", error.message);
         res.render("index.ejs", {
-        error: error.message,
+            tr: [],
+            searchdata: [],
+            searchdatas: [],
+            pmovie: [],
+            tmovie: [],
+            ptv: [],
+            ttv: [],
+            error: error.message,
         });
     }
 });
